@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer_effect/src/data/shimmer_data.dart';
-import 'package:shimmer_effect/src/widget/shimmer_effect_widget.dart';
+import 'package:shimmer_effect/src/widget/shimmer_effect/shimmer_effect_view.dart';
 
 void main() {
   runApp(const Example());
@@ -46,20 +46,39 @@ class _ShimmerPageState extends State<ShimmerPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ShimmerEffectWidget(
-                baseColor: Colors.grey[300]!,
-                highlightColor: Colors.grey[100]!,
+              ShimmerEffectWidget.cover(
+                subColor: Colors.grey[300]!,
+                mainColor: Colors.grey[100]!,
                 period: const Duration(milliseconds: 1200),
                 direction: ShimmerDirection.ttb,
                 child: Container(width: 100, height: 100, color: Colors.white),
               ),
               const SizedBox(height: 20.0),
-              ShimmerEffectWidget(
-                baseColor: Colors.grey[800]!,
-                highlightColor: Colors.grey[400]!,
+              ShimmerEffectWidget.cover(
+                subColor: Colors.grey[800]!,
+                mainColor: Colors.grey[400]!,
                 period: const Duration(milliseconds: 1500),
                 direction: ShimmerDirection.ttb,
                 child: const Text("> Slide to Unlock loading text", style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),),
+              ),
+              ShimmerEffectWidget.cover(
+                subColor: Colors.grey[800]!,
+                mainColor: Colors.grey[400]!,
+                period: const Duration(milliseconds: 1500),
+                direction: ShimmerDirection.ttb,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        ShimmerEffectWidget.circle(size: 60),
+                        const SizedBox(width: 20,),
+                        ShimmerEffectWidget.rectangle(width: 60, height: 15,),
+                        const SizedBox(width: 20,),
+                        ShimmerEffectWidget.triangle(size: 60)
+                      ],
+                    )
+                  ],
+                ),
               )
             ],
           ),

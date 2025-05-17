@@ -7,7 +7,6 @@ typedef ShaderMover = GradientTransform;
 class SlideGradient implements ShaderMover {
   final double progress;
   final ShimmerDirection direction;
-
   const SlideGradient(this.progress, this.direction);
 
   @override

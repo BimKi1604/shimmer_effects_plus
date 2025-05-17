@@ -1,32 +1,10 @@
+import 'package:shimmer_effect/src/widget/shimmer_effect/shimmer_effect_view.dart';
+import '../../controller/shimmer_controller.dart';
+import '../../utils/gradient_utils.dart';
 import 'package:flutter/material.dart';
-import '../controller/shimmer_controller.dart';
-import '../data/shimmer_data.dart';
-import '../utils/gradient_transform.dart';
 
-/// The main class for shimmer loading
-class ShimmerEffectWidget extends StatefulWidget {
-  final Widget child;
-  final Color baseColor;
-  final Color highlightColor;
-  final Duration period;
-  final ShimmerDirection direction;
-  final bool enabled;
-
-  const ShimmerEffectWidget({
-    super.key,
-    required this.child,
-    this.baseColor = ShimmerData.baseColor,
-    this.highlightColor = ShimmerData.highlightColor,
-    this.period = ShimmerData.defaultPeriod,
-    this.direction = ShimmerDirection.ltr,
-    this.enabled = true,
-  });
-
-  @override
-  State<ShimmerEffectWidget> createState() => _ShimmerEffectWidgetState();
-}
-
-class _ShimmerEffectWidgetState extends State<ShimmerEffectWidget>
+/// The state for Shimmer effect view
+class ShimmerEffectWidgetState extends State<ShimmerEffectWidget>
     with SingleTickerProviderStateMixin {
   late final ShimmerController shimmerCtrl;
 
@@ -66,11 +44,13 @@ class _ShimmerEffectWidgetState extends State<ShimmerEffectWidget>
             shaderCallback: (bounds) {
               final gradient = LinearGradient(
                 colors: [
-                  widget.baseColor,
-                  widget.highlightColor,
-                  widget.baseColor,
+                  widget.subColor,
+                  widget.subColor,
+                  widget.mainColor,
+                  widget.subColor,
+                  widget.subColor,
                 ],
-                stops: const [0.25, 0.5, 0.75],
+                stops: const [0.0,0.25, 0.5, 0.75, 1.0],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 tileMode: TileMode.repeated,

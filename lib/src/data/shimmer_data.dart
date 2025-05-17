@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 
 /// Direction of shimmer movement
-enum ShimmerDirection { ltr, rtl, ttb, btt }
+enum ShimmerDirection {
+  /// left to right
+  ltr,
+  /// right to left
+  rtl,
+  /// top to bottom
+  ttb,
+  /// bottom to top
+  btt
+}
 
 /// Default values of shimmer
 class ShimmerData {
-  static const Color baseColor = Color(0xFFEDF1F4);
-  static const Color highlightColor = Color(0xFFC3CBDC);
+  static const Color subColor = Color(0xFFEDF1F4);
+  static const Color mainColor = Color(0xFFC3CBDC);
   static const Duration defaultPeriod = Duration(milliseconds: 1000);
 }
