@@ -77,6 +77,7 @@ class ShimmerEffectWidget extends StatefulWidget {
     Color mainColor = ShimmerData.mainColor,
     Duration period = ShimmerData.defaultPeriod,
     ShimmerDirection direction = ShimmerDirection.ltr,
+    double radius = 0.0,
     bool enabled = true,
   }) {
     return ShimmerEffectWidget.cover(
@@ -90,6 +91,7 @@ class ShimmerEffectWidget extends StatefulWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(radius),
           shape: BoxShape.rectangle,
           color: subColor,
         ),
