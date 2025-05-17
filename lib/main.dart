@@ -49,7 +49,7 @@ class _ShimmerPageState extends State<ShimmerPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                  "Example container", style: TextStyle(
+                  "Example with param container", style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                       color: Colors.deepOrange
@@ -64,7 +64,7 @@ class _ShimmerPageState extends State<ShimmerPage> {
                 child: Container(width: 100, height: 100, color: Colors.white),
               ),
               const SizedBox(height: 10.0),
-              const Text("Example container", style: TextStyle(
+              const Text("Example with param text", style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                   color: Colors.deepOrange
