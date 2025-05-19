@@ -59,18 +59,8 @@ topics:
     - shimmer
     - shimmer-effect
     - skeleton
-    - skeleton-loading
-    - loading-ui
-    - flutter-animation
-    - shimmer-list
-    - shimmer-page
-    - shimmer-rectangle
-    - shimmer-triangle
-    - placeholder
     - ui-loading
     - loading-placeholder
-    - flutter-widget
-    - custom-shimmer
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
