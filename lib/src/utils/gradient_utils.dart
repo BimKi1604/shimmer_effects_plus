@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shimmer_effect/src/data/shimmer_data.dart';
+import 'package:shimmer_effects_plus/src/data/shimmer_data.dart';
 
 /// GradientTransform to shift the shader on bounds
 typedef ShaderMover = GradientTransform;

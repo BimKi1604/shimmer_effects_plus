@@ -1,4 +1,4 @@
-import 'package:shimmer_effect/src/widget/shimmer_effect/shimmer_effect_view.dart';
+import 'package:shimmer_effects_plus/src/widget/shimmer_effects_plus/shimmer_effect_view.dart';
 import '../../controller/shimmer_controller.dart';
 import '../../utils/gradient_utils.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shimmer_effect/src/utils/shape_utils.dart';
-import 'package:shimmer_effect/src/widget/shimmer_effect/shimmer_effect_state.dart';
+import 'package:shimmer_effects_plus/src/utils/shape_utils.dart';
+import 'package:shimmer_effects_plus/src/widget/shimmer_effects_plus/shimmer_effect_state.dart';
 import '../../data/shimmer_data.dart';
 
 /// The main class for shimmer effect

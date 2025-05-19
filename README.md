@@ -1,6 +1,6 @@
-![Pub Version](https://img.shields.io/pub/v/shimmer_effect)
-![Likes](https://img.shields.io/pub/likes/shimmer_effect)
-![Popularity](https://img.shields.io/pub/popularity/shimmer_effect)
+![Pub Version](https://img.shields.io/pub/v/shimmer_effects_plus)
+![Likes](https://img.shields.io/pub/likes/shimmer_effects_plus)
+![Popularity](https://img.shields.io/pub/popularity/shimmer_effects_plus)
 
 ### ☕ Buy Me a Coffee
 
@@ -8,7 +8,7 @@
 
 # 🔽 Shimmer Effect (Flutter)
 
-shimmer_effect is a Flutter package that creates a shimmering loading effect to indicate content is being loaded. It allows you to wrap any widget with a customizable animated placeholder. You can easily adjust the shimmer’s color, speed, and direction to match your app's design.
+shimmer_effects_plus is a Flutter package that creates a shimmering loading effect to indicate content is being loaded. It allows you to wrap any widget with a customizable animated placeholder. You can easily adjust the shimmer’s color, speed, and direction to match your app's design.
 
 ---
 
@@ -137,7 +137,7 @@ const ShimmerListPage(
 
 ## ⚙️ Setup
 
-To install the `shimmer_effect` package, add the following to your `pubspec.yaml` file:
+To install the `shimmer_effects_plus` package, add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
@@ -153,7 +153,7 @@ dependencies:
 
 ## 🙌 Contributions
 
-Feel free to open issues or pull requests on [GitHub](https://github.com/BimKi1604/shimmer_effect).
+Feel free to open issues or pull requests on [GitHub](https://github.com/BimKi1604/shimmer_effects_plus).
 
 ---
 

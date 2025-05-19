@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="shimmer_effect"
+        android:label="shimmer_effects_plus"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

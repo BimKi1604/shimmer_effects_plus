@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer_effect/src/data/shimmer_data.dart';
-import 'package:shimmer_effect/src/widget/component/shimmer_list.dart';
-import 'package:shimmer_effect/src/widget/shimmer_effect/shimmer_effect_view.dart';
+import 'package:shimmer_effects_plus/src/data/shimmer_data.dart';
+import 'package:shimmer_effects_plus/src/widget/component/shimmer_list.dart';
+import 'package:shimmer_effects_plus/src/widget/shimmer_effects_plus/shimmer_effect_view.dart';
 
 class ShimmerListPage extends StatefulWidget {
   final int qtyPerLine;
