@@ -39,205 +39,105 @@ shimmer_effect is a Flutter package that creates a shimmering loading effect to 
 ## 🏗️ Architecture & Technologies
 
 
-| Component              | Description                                                     |
-|------------------------|-----------------------------------------------------------------|
-| `ExpandableTileView`   | Main widget to expand/collapse content with animation           |
-| `ExpandableAnimation`  | Enum to select animation type (e.g., size, fade, scale, def)    |
-| `AxisExpand`           | Enum to control direction of expansion (horizontal or vertical) |
-| `ExpandableAnimation`  | Enum to control animation of expansion                          |
-| `ImageType`            | Enum to control image in app                                    |
-| `ExpandTileController` | Main controller to control state of expand (isExpand,axis,...)  |
+| Component              | Description                                                    |
+|------------------------|----------------------------------------------------------------|
+| `ShimmerEffectWidget`  | Main shimmer wrapper with configurable animation               |
+| `ShimmerController`    | Main controller to control state of shimmer (animation,enable) |
+| `ShimmerDirection`     | Enum for controlling animation direction (LTR, RTL, TTB, BTT)  |
+| `ShimmerData`          | Stores default color and timing configurations                 |
+| `SlideGradient`        | Gradient transform logic for animating the shimmer             |
 
 ---
 
 ## 🧾 Constructor Parameters
 
-| Field             | Type         | Default               | Description                                                                   |
-|-------------------|--------------|-----------------------|-------------------------------------------------------------------------------|
-| `title`*(title)*  | `String`     | **required**          | The string displayed as the expandable title's widget.                        |
-| `src`*(image)*    | `String`     | **required**          | The link to your image (asset, local file, online image)                      |
-| `title`*(custom)* | `Widget`     | **required**          | The widget displayed as the expandable tile's title.                          |
-| `child`           | `Widget`     | **required**          | The content widget shown when expanded.                                       |
-| `width`*(title)*  | `double?`    | `null`                | The width of the entire tile. If null, it adapts to the content.              |
-| `ratio`*(custom)* | `Ratio?`     | `Ratio(5, 5)`         | the ratio of left and right widgets when posHorizontal is true.               |
-| `axis`            | `AxisExpand` | `AxisExpand.vertical` | The direction of expansion: vertical or horizontal.                           |
-| `titleBGColor`    | `Color?`     | `null`                | Background color for the title section.                                       |
-| `titleTextStyle`  | `TextStyle?` | `null`                | Text style for the title (if it's a `Text` widget).                           |
-| `widthFill`       | `bool`       | `true`                | If true, the total width of the ExpandableTile will fit title and child       |
-| `posHorizontal`   | `bool`       | `false`               | Applies only if `axis` is horizontal. If true, title on left, child on right. |
-| `showIcon`        | `bool`       | `true`                | If false, the expandable title show without icon dropdown                     |
-| `posHorizontal`   | `bool`       | `false`               | Applies only if `axis` is horizontal. If true, title on left, child on right. |
+| Field                            | Type               | Default                   | Description                                      |
+|----------------------------------|--------------------|---------------------------|--------------------------------------------------|
+| `child`                          | `Widget`           | **required**              | The content widget shown when expanded.          |
+| `subColor`                       | `Color`            | `FFEDF1F4`                | The sub color of gradient effect.                |
+| `mainColor`                      | `Color`            | `FFC3CBDC`                | The main color of gradient effect.               |
+| `period`                         | `Duration`         | `1.2s`                    | Duration for one shimmer loop                    |
+| `direction`                      | `ShimmerDirection` | `ShimmerDirection.ltr`    | Direction of shimmer movement                    |
+| `enabled`                        | `bool`             | `true`                    | Toggle shimmer animation on/off                  |
+| `size`                           | `double`           | **required**              | The size circle, triangle of ShimmerEffectWidget |
+| `width`                          | `double`           | **required**              | Width of shimmer shape rectangle                 |
+| `height`                         | `double`           | **required**              | Height of shimmer shape rectangle                |
+| `radius` *(rectangle)*           | `double`           | `0.0`                     | Radius of rectangle shimmer widget               |
+| `qtyLine` *(ShimmerList)*        | `int`              | **required**              | Line for ShimmerList will display shimmer        |
+| `qtyPerLine` *(ShimmerListPage)* | `int`              | `3`                       | Line for ShimmerListPage will display shimmer    |
+| `shape` *(ShimmerListPage)*      | `ShimmerShapeType` | `ShimmerShapeType.square` | Shape of main info list page                     |
+| `quantity` *(ShimmerListPage)*   | `int`              | `3`                       | Quantity of list in page                         |
 ---
 
 ## 🚀 Usage
 
 ### ✅ Basic Usage
 
-#### 📏 Default Size Animation
-
-##### Child Horizontally (Size animation)
+#### 📏 Basic Shimmer cover
 
 ```dart
-ExpandableTileView.animatedDef(
-  title: "Animation default horizontal",
-  axis: AxisExpand.horizontal,
-  posHorizontal: true,
-  child: Text("This is demo for expand text vertical. The Child is Text."),
+ShimmerEffectWidget.cover(
+    subColor: Colors.grey[300]!,
+    mainColor: Colors.grey[100]!,
+    period: const Duration(milliseconds: 1200),
+    direction: ShimmerDirection.ttb,
+    child: Container(width: 100, height: 100, color: Colors.white),
 )
 ```
 
-##### Child Vertically (Size animation)
-
-##### Text Title
+#### 📏 Basic Shimmer cover (Text)
 
 ```dart
-ExpandableTileView.animatedDef(
-  title: "Animation default horizontal",
-  axis: AxisExpand.horizontal,
-  child: Text("This is demo for expand text vertical. The Child is Text."),
-)
+ShimmerEffectWidget.cover(
+    subColor: Colors.grey[800]!,
+    mainColor: Colors.grey[400]!,
+    period: const Duration(milliseconds: 1500),
+    direction: ShimmerDirection.ttb,
+    child: const Text("Shimmer loading text", style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),),
+),
 ```
 
-##### Image Title
+#### 🟢 Circular shimmer (e.g., for avatar)
 
 ```dart
-ExpandableImageView.animatedDef(
-  src: "https://www.centrale-canine.fr/sites/default/files/2024-11/Fiche%20de%20race%20banni%C3%A8re%20corgi%20pembroke.jpg",
-  child: Text("This is demo for expand image with default animation. The Child is Text"),
-)
+ShimmerEffectWidget.circle(size: 60),
 ```
 
-##### Custom Title
+#### 🔺 Shimmer Triangle
 
 ```dart
-ExpandableCustomView.animatedDef(
-    title: const Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-            Text("Custom Title", style: TextStyle(fontSize: 14, color: Colors.redAccent),),
-            Text("Default animation", style: TextStyle(fontSize: 14, color: Colors.green),),
-            Icon(Icons.check, size: 27, color: Colors.redAccent),
-        ],
-    )
-  child: Text("This is demo for expand custom with fade animation. The Child is Text"),
-)
+ShimmerEffectWidget.triangle(size: 60),
 ```
 
-#### 🌫️ Fade Animation
-
-##### Text Title
+#### ✅ Shimmer Triangle
 
 ```dart
-ExpandableTileView.animatedFade(
-  title: "Animation fade",
-  child: Text("Fading in and out!"),
-)
+ShimmerEffectWidget.rectangle(width: 60, height: 15,),
 ```
 
-##### Image Title
+#### 📋 Shimmer List
 
 ```dart
-ExpandableImageView.animatedFade(
-  src: "https://file.hstatic.net/1000292100/article/61312315_440746569804333_4727353524977926144_n_9a585e47ace64345af4b2dd9bc1f45bb.jpg",
-  child: Text("This is demo for expand image with fade animation. The Child is Text"),
-)
+const ShimmerList(
+  qtyLine: 2,
+),
 ```
 
-##### Custom Title
+#### 📄 Shimmer List Page
 
 ```dart
-  ExpandableCustomView.animatedFade(
-     title: const Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text("Custom Title", style: TextStyle(fontSize: 14, color: Colors.redAccent),),
-        Text("Fade animation", style: TextStyle(fontSize: 14, color: Colors.green),),
-        Icon(Icons.check, size: 27, color: Colors.redAccent),
-      ],
-    ) ,
-    posHorizontal: true,  
-    ratio: const Ratio(7,3),  
-    child: Text("This is demo for expand custom with fade animation. The Child is Text"),
-  )
-```
-
-#### 🔍 Scale Animation
-
-##### Text Title
-
-```dart
-ExpandableTileView.animatedScale(
-  title: "Animation scale",
-  child: Text("Scaling animation!"),
-)
-```
-
-##### Image Title
-
-```dart
-ExpandableImageView.animatedScale(
-  src: "https://file.hstatic.net/1000292100/file/img_1907_grande_e05accd5a03247069db4f3169cfb8b11_grande.jpg",
-  child: Text("This is demo for expand image with scale animation. The Child is Text"),
-)
-```
-
-##### Custom Title
-
-```dart
-  ExpandableCustomView.animatedScale(
-      title: const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-          Text("Custom Title", style: TextStyle(fontSize: 14, color: Colors.redAccent),),
-          Text("Scale animation", style: TextStyle(fontSize: 14, color: Colors.green),),
-          Icon(Icons.check, size: 27, color: Colors.redAccent),
-      ],
-  ),
-  child: Text("This is demo for expand custom with scale animation. The Child is Text"),
-)
-```
-
-#### None Animation
-
-##### Text Title
-
-```dart
-ExpandableTileView.noneAnimation(
-  title: "No animation",
-  child: Text("Scaling animation!"),
-)
-```
-
-##### Image Title
-
-```dart
-ExpandableImageView.noneAnimation(
-  src:"https://www.centrale-canine.fr/sites/default/files/2024-11/Fiche%20de%20race%20banni%C3%A8re%20corgi%20pembroke.jpg",
-  child: Text("None animation!"),
-)
-```
-
-##### Custom Title
-
-```dart
-  ExpandableCustomView.noneAnimation(
-     title: const Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text("Custom Title",style: TextStyle(fontSize: 14, color: Colors.redAccent),),
-        Text("No animation",style: TextStyle(fontSize: 14, color: Colors.green),),
-        Icon(Icons.check, size: 27, color: Colors.redAccent),
-      ],
-     ),
-    child: Text("None animation!"),
-  )
+const ShimmerListPage(
+    qtyPerLine: 3,
+    quantity: 3,
+    shape: ShimmerShapeType.square,
+),
 ```
 
 ---
 
 ## ⚙️ Setup
 
-To install the `expandable_tile` package, add the following to your `pubspec.yaml` file:
+To install the `shimmer_effect` package, add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
@@ -253,7 +153,7 @@ dependencies:
 
 ## 🙌 Contributions
 
-Feel free to open issues or pull requests on [GitHub](https://github.com/BimKi1604/expandable_tile).
+Feel free to open issues or pull requests on [GitHub](https://github.com/BimKi1604/shimmer_effect).
 
 ---
 

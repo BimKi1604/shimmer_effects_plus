@@ -48,13 +48,11 @@ class _ShimmerPageState extends State<ShimmerPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                  "Example with param container", style: TextStyle(
+              const Text("Example with param container",
+                  style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
-                      color: Colors.deepOrange
-                  )
-              ),
+                      color: Colors.deepOrange)),
               const SizedBox(height: 10.0),
               ShimmerEffectWidget.cover(
                 subColor: Colors.grey[300]!,
@@ -64,24 +62,26 @@ class _ShimmerPageState extends State<ShimmerPage> {
                 child: Container(width: 100, height: 100, color: Colors.white),
               ),
               const SizedBox(height: 10.0),
-              const Text("Example with param text", style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.deepOrange
-                )
-              ),
+              const Text("Example with param text",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.deepOrange)),
               ShimmerEffectWidget.cover(
                 subColor: Colors.grey[800]!,
                 mainColor: Colors.grey[400]!,
                 period: const Duration(milliseconds: 1500),
                 direction: ShimmerDirection.ttb,
-                child: const Text("Shimmer loading text", style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),),
+                child: const Text(
+                  "Shimmer loading text",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                ),
               ),
-              const Text("Example shape", style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.deepOrange
-              )),
+              const Text("Example shape",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.deepOrange)),
               ShimmerEffectWidget.cover(
                 subColor: Colors.grey[800]!,
                 mainColor: Colors.grey[400]!,
@@ -96,35 +96,42 @@ class _ShimmerPageState extends State<ShimmerPage> {
                       children: [
                         Column(
                           children: [
-                            const Text("Circle", style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.blueAccent
-                            )),
+                            const Text("Circle",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.blueAccent)),
                             const SizedBox(height: 5.0),
                             ShimmerEffectWidget.circle(size: 60),
                           ],
                         ),
-                        const SizedBox(width: 20,),
+                        const SizedBox(
+                          width: 20,
+                        ),
                         Column(
                           children: [
-                            const Text("Rectangle", style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.blueAccent
-                            )),
+                            const Text("Rectangle",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.blueAccent)),
                             const SizedBox(height: 5.0),
-                            ShimmerEffectWidget.rectangle(width: 60, height: 15,),
+                            ShimmerEffectWidget.rectangle(
+                              width: 60,
+                              height: 15,
+                            ),
                           ],
                         ),
-                        const SizedBox(width: 20,),
+                        const SizedBox(
+                          width: 20,
+                        ),
                         Column(
                           children: [
-                            const Text("Triangle", style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.blueAccent
-                            )),
+                            const Text("Triangle",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.blueAccent)),
                             const SizedBox(height: 5.0),
                             ShimmerEffectWidget.triangle(size: 60),
                           ],
@@ -134,22 +141,30 @@ class _ShimmerPageState extends State<ShimmerPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 5.0,),
-              const Text("Example shimmer list", style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.deepOrange
-              )),
+              const SizedBox(
+                height: 5.0,
+              ),
+              const Text("Example shimmer list",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.deepOrange)),
               const ShimmerList(
                 qtyLine: 2,
               ),
-              const SizedBox(height: 5.0,),
-              const Text("Example shimmer list page", style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.deepOrange
-              )),
-              const ShimmerListPage(),
+              const SizedBox(
+                height: 5.0,
+              ),
+              const Text("Example shimmer list page",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.deepOrange)),
+              const ShimmerListPage(
+                qtyPerLine: 3,
+                quantity: 3,
+                shape: ShimmerShapeType.square,
+              ),
             ],
           ),
         ),

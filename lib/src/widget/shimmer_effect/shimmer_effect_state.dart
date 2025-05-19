@@ -50,7 +50,7 @@ class ShimmerEffectWidgetState extends State<ShimmerEffectWidget>
                   widget.subColor,
                   widget.subColor,
                 ],
-                stops: const [0.0,0.25, 0.5, 0.75, 1.0],
+                stops: const [0.0, 0.25, 0.5, 0.75, 1.0],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 tileMode: TileMode.repeated,

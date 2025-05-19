@@ -6,10 +6,18 @@ import '../../data/shimmer_data.dart';
 /// The main class for shimmer effect
 class ShimmerEffectWidget extends StatefulWidget {
   final Widget child;
-  final Color subColor; /// sub color in gradients
-  final Color mainColor; /// main color in gradients
-  final Duration period; /// time animation shimmer
-  final ShimmerDirection direction; /// direction of shimmer
+  final Color subColor;
+
+  /// sub color in gradients
+  final Color mainColor;
+
+  /// main color in gradients
+  final Duration period;
+
+  /// time animation shimmer
+  final ShimmerDirection direction;
+
+  /// direction of shimmer
   final bool enabled;
 
   const ShimmerEffectWidget._({
@@ -125,7 +133,6 @@ class ShimmerEffectWidget extends StatefulWidget {
       ),
     );
   }
-
 
   @override
   State<ShimmerEffectWidget> createState() => ShimmerEffectWidgetState();

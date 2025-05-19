@@ -10,7 +10,7 @@ class SlideGradient implements ShaderMover {
   const SlideGradient(this.progress, this.direction);
 
   @override
-  Matrix4? transform(Rect bounds, { TextDirection? textDirection }) {
+  Matrix4? transform(Rect bounds, {TextDirection? textDirection}) {
     final width = bounds.width;
     final height = bounds.height;
     double x = 0, y = 0;

@@ -4,18 +4,19 @@ import 'package:flutter/material.dart';
 enum ShimmerDirection {
   /// left to right
   ltr,
+
   /// right to left
   rtl,
+
   /// top to bottom
   ttb,
+
   /// bottom to top
   btt
 }
 
 /// Type of shape shimmer
-enum ShimmerShapeType {
-  circle, square
-}
+enum ShimmerShapeType { circle, square }
 
 /// Default values of shimmer
 class ShimmerData {

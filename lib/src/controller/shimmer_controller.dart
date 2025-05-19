@@ -11,13 +11,13 @@ class ShimmerController {
     this.enabled = true,
     Duration? period,
   }) : controller = AnimationController(
-    vsync: vsync,
-    duration: period ?? ShimmerData.defaultPeriod,
-  ) {
+          vsync: vsync,
+          duration: period ?? ShimmerData.defaultPeriod,
+        ) {
     if (enabled) controller.repeat();
   }
 
-  void update({ bool? newEnabled, Duration? newPeriod }) {
+  void update({bool? newEnabled, Duration? newPeriod}) {
     if (newEnabled != null) {
       if (newEnabled && !controller.isAnimating) controller.repeat();
       if (!newEnabled && controller.isAnimating) controller.stop();
