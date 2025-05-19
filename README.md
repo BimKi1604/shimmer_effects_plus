@@ -13,7 +13,7 @@ shimmer_effects_plus is a Flutter package that creates a shimmering loading effe
 ---
 
 ## 🎬 Demo Video
-
+![](assets/demo.gif)
 ---
 
 ## 📱 Use Cases
@@ -141,7 +141,7 @@ To install the `shimmer_effects_plus` package, add the following to your `pubspe
 
 ```yaml
 dependencies:
-  expandable_tile: ^1.0.0
+  expandable_tile: ^1.0.1
 ```
 ## 📦 Supported SDKs
 

@@ -1,6 +1,6 @@
 name: shimmer_effects_plus
-description: " A powerful and customizable Flutter shimmer effect package that provides rectangle, triangle, list, and full-page shimmer loading placeholders. Perfect for improving perceived performance with modern skeleton UI designs."
-version: 1.0.0
+description: "A customizable shimmer effect package for Flutter, supporting rectangle, triangle, list, and page loading animations."
+version: 1.0.1
 license: MIT
 homepage: https://github.com/BimKi1604/shimmer_effects_plus
 repository: https://github.com/BimKi1604/shimmer_effects_plus
