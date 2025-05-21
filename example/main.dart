@@ -27,7 +27,11 @@ class ShimmerPage extends StatefulWidget {
   State<ShimmerPage> createState() => _ShimmerPageState();
 }
 
-class _ShimmerPageState extends State<ShimmerPage> {
+class _ShimmerPageState extends State<ShimmerPage> with SingleTickerProviderStateMixin{
+
+  int waitingTime = 3; /// seconds
+  ValueNotifier<int> _remainingS = ValueNotifier(3);
+
   @override
   void initState() {
     super.initState();
@@ -35,11 +39,25 @@ class _ShimmerPageState extends State<ShimmerPage> {
 
   @override
   void dispose() {
+    _remainingS.dispose();
     super.dispose();
+  }
+
+  void _startCountdown() async {
+    _remainingS = ValueNotifier(3);
+    while (_remainingS.value > 0) {
+      await Future.delayed(const Duration(seconds: 1));
+      _remainingS.value -= 1;
+    }
+  }
+
+  Future<void> funcHideShimmerWhenFinish() async { /// function async
+    await Future.delayed(Duration(milliseconds: waitingTime)); /// remember await function action (load api, read file, ... )
   }
 
   @override
   Widget build(BuildContext context) {
+    _startCountdown();
     return Scaffold(
       appBar: AppBar(title: const Text("Demo Shimmer Effect")),
       body: Padding(
@@ -48,6 +66,34 @@ class _ShimmerPageState extends State<ShimmerPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Text("Example loading shimmer effect and show child when event finished", /// Loading shimmer and show child when event finished
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.deepOrange)),
+              const SizedBox(height: 10.0),
+              Row(
+                children: [
+                  ShimmerEffectWidget.auto(
+                    subColor: Colors.grey[300]!,
+                    mainColor: Colors.grey[100]!,
+                    period: const Duration(milliseconds: 1200),
+                    funcShimmer: () async {
+                      await funcHideShimmerWhenFinish();
+                    },
+                    direction: ShimmerDirection.ttb,
+                    child: Container(width: 100, height: 100, color: Colors.red),
+                  ),
+                  const SizedBox(width: 20.0,),
+                  ValueListenableBuilder<int>(
+                    valueListenable: _remainingS,
+                    builder: (context, s, _) {
+                      return Text("$s s", style: const TextStyle(fontSize: 24));
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10.0),
               const Text("Example with param container",
                   style: TextStyle(
                       fontSize: 20,

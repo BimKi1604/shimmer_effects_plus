@@ -15,6 +15,8 @@ class ShimmerEffectWidgetState extends State<ShimmerEffectWidget>
       vsync: this,
       enabled: widget.enabled,
       period: widget.period,
+        isLoadingAutoEffect: widget.autoShimmer,
+      task: widget.funcShimmer
     );
   }
 
@@ -24,6 +26,8 @@ class ShimmerEffectWidgetState extends State<ShimmerEffectWidget>
     shimmerCtrl.update(
       newEnabled: widget.enabled,
       newPeriod: widget.period,
+      auto: widget.autoShimmer,
+      taskParams: widget.funcShimmer
     );
   }
 
@@ -39,8 +43,9 @@ class ShimmerEffectWidgetState extends State<ShimmerEffectWidget>
       child: AnimatedBuilder(
         animation: shimmerCtrl.controller,
         builder: (context, _) {
+          final isLoading = shimmerCtrl.enabled && !shimmerCtrl.isLoadingAutoEffect;
           return ShaderMask(
-            blendMode: BlendMode.srcATop,
+            blendMode: isLoading ? BlendMode.srcATop : BlendMode.dst,
             shaderCallback: (bounds) {
               final gradient = LinearGradient(
                 colors: [

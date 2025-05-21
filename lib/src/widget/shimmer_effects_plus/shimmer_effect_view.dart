@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shimmer_effects_plus/src/utils/shape_utils.dart';
 import 'package:shimmer_effects_plus/src/widget/shimmer_effects_plus/shimmer_effect_state.dart';
@@ -6,19 +8,26 @@ import '../../data/shimmer_data.dart';
 /// The main class for shimmer effect
 class ShimmerEffectWidget extends StatefulWidget {
   final Widget child;
+  /// sub color in gradients
   final Color subColor;
 
-  /// sub color in gradients
+  /// main color in gradients
   final Color mainColor;
 
-  /// main color in gradients
+  /// time animation shimmer
   final Duration period;
 
-  /// time animation shimmer
+  /// direction of shimmer
   final ShimmerDirection direction;
 
-  /// direction of shimmer
+  /// turn off/on shimmer effect
   final bool enabled;
+
+  /// turn off/on auto loading shimmer
+  final bool autoShimmer;
+
+  /// The shimmer effect will be hidden after the function ends
+  final Future<void> Function()? funcShimmer;
 
   const ShimmerEffectWidget._({
     super.key,
@@ -28,6 +37,8 @@ class ShimmerEffectWidget extends StatefulWidget {
     this.period = ShimmerData.defaultPeriod,
     this.direction = ShimmerDirection.ltr,
     this.enabled = true,
+    this.funcShimmer,
+    this.autoShimmer = false,
   });
 
   factory ShimmerEffectWidget.cover({
@@ -46,6 +57,29 @@ class ShimmerEffectWidget extends StatefulWidget {
       mainColor: mainColor,
       period: period,
       subColor: subColor,
+      child: child,
+    );
+  }
+
+  factory ShimmerEffectWidget.auto({
+    Key? key,
+    required Widget child,
+    required Future<void> Function() funcShimmer,
+    subColor = ShimmerData.subColor,
+    mainColor = ShimmerData.mainColor,
+    period = ShimmerData.defaultPeriod,
+    direction = ShimmerDirection.ltr,
+    enabled = true,
+  }) {
+    return ShimmerEffectWidget._(
+      key: key,
+      autoShimmer: true,
+      direction: direction,
+      enabled: enabled,
+      mainColor: mainColor,
+      period: period,
+      subColor: subColor,
+      funcShimmer: funcShimmer,
       child: child,
     );
   }
