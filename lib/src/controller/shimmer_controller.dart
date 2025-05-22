@@ -21,11 +21,15 @@ class ShimmerController {
         ) {
     if (enabled) controller.repeat();
     if (task != null) {
-      Future.microtask(() async  => await runTask(task!));
+      Future.microtask(() async => await runTask(task!));
     }
   }
 
-  void update({bool? newEnabled, Duration? newPeriod, bool? auto, Future<void> Function()? taskParams }) async {
+  void update(
+      {bool? newEnabled,
+      Duration? newPeriod,
+      bool? auto,
+      Future<void> Function()? taskParams}) async {
     if (newEnabled != null) {
       if (newEnabled && !controller.isAnimating) controller.repeat();
       if (!newEnabled && controller.isAnimating) controller.stop();
@@ -35,9 +39,6 @@ class ShimmerController {
         ..duration = newPeriod
         ..repeat();
     }
-    if (auto != null && auto != isLoadingAutoEffect) {
-      isLoadingAutoEffect = auto;
-    }
     if (taskParams != null) {
       await runTask(taskParams);
     }
@@ -46,7 +47,9 @@ class ShimmerController {
   Future<void> runTask(Future<void> Function() taskParams) async {
     isLoadingAutoEffect = false;
     try {
-      await taskParams(); /// process function
+      await taskParams();
+
+      /// process function
     } finally {
       isLoadingAutoEffect = true;
     }

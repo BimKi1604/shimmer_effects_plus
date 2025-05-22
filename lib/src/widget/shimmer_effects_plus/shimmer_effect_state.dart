@@ -12,23 +12,21 @@ class ShimmerEffectWidgetState extends State<ShimmerEffectWidget>
   void initState() {
     super.initState();
     shimmerCtrl = ShimmerController(
-      vsync: this,
-      enabled: widget.enabled,
-      period: widget.period,
+        vsync: this,
+        enabled: widget.enabled,
+        period: widget.period,
         isLoadingAutoEffect: widget.autoShimmer,
-      task: widget.funcShimmer
-    );
+        task: widget.funcShimmer);
   }
 
   @override
   void didUpdateWidget(covariant ShimmerEffectWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
     shimmerCtrl.update(
-      newEnabled: widget.enabled,
-      newPeriod: widget.period,
-      auto: widget.autoShimmer,
-      taskParams: widget.funcShimmer
-    );
+        newEnabled: widget.enabled,
+        newPeriod: widget.period,
+        auto: widget.autoShimmer,
+        taskParams: widget.funcShimmer);
   }
 
   @override
@@ -43,7 +41,8 @@ class ShimmerEffectWidgetState extends State<ShimmerEffectWidget>
       child: AnimatedBuilder(
         animation: shimmerCtrl.controller,
         builder: (context, _) {
-          final isLoading = shimmerCtrl.enabled && !shimmerCtrl.isLoadingAutoEffect;
+          final isLoading =
+              shimmerCtrl.enabled && !shimmerCtrl.isLoadingAutoEffect;
           return ShaderMask(
             blendMode: isLoading ? BlendMode.srcATop : BlendMode.dst,
             shaderCallback: (bounds) {

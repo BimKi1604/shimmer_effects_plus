@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer_effects_plus/src/data/shimmer_data.dart';
+import 'package:shimmer_effects_plus/src/utils/shape_utils.dart';
 import 'package:shimmer_effects_plus/src/widget/component/shimmer_list.dart';
 import 'package:shimmer_effects_plus/src/widget/component/shimmer_list_page.dart';
 import 'package:shimmer_effects_plus/src/widget/shimmer_effects_plus/shimmer_effect_view.dart';
@@ -27,10 +28,12 @@ class ShimmerPage extends StatefulWidget {
   State<ShimmerPage> createState() => _ShimmerPageState();
 }
 
-class _ShimmerPageState extends State<ShimmerPage> with SingleTickerProviderStateMixin{
+class _ShimmerPageState extends State<ShimmerPage>
+    with SingleTickerProviderStateMixin {
+  int waitingTime = 5;
 
-  int waitingTime = 3; /// seconds
-  ValueNotifier<int> _remainingS = ValueNotifier(3);
+  /// seconds
+  ValueNotifier<int> _remainingS = ValueNotifier(5);
 
   @override
   void initState() {
@@ -44,15 +47,18 @@ class _ShimmerPageState extends State<ShimmerPage> with SingleTickerProviderStat
   }
 
   void _startCountdown() async {
-    _remainingS = ValueNotifier(3);
+    _remainingS = ValueNotifier(waitingTime);
     while (_remainingS.value > 0) {
       await Future.delayed(const Duration(seconds: 1));
       _remainingS.value -= 1;
     }
   }
 
-  Future<void> funcHideShimmerWhenFinish() async { /// function async
-    await Future.delayed(Duration(milliseconds: waitingTime)); /// remember await function action (load api, read file, ... )
+  Future<void> funcHideShimmerWhenFinish() async {
+    /// function async
+    await Future.delayed(Duration(seconds: waitingTime));
+
+    /// remember await function action (load api, read file, ... )
   }
 
   @override
@@ -66,13 +72,17 @@ class _ShimmerPageState extends State<ShimmerPage> with SingleTickerProviderStat
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("Example loading shimmer effect and show child when event finished", /// Loading shimmer and show child when event finished
+              const Text(
+                  "Example loading shimmer effect and show child when event finished",
+
+                  /// Loading shimmer and show child when event finished
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                       color: Colors.deepOrange)),
               const SizedBox(height: 10.0),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ShimmerEffectWidget.auto(
                     subColor: Colors.grey[300]!,
@@ -82,14 +92,34 @@ class _ShimmerPageState extends State<ShimmerPage> with SingleTickerProviderStat
                       await funcHideShimmerWhenFinish();
                     },
                     direction: ShimmerDirection.ttb,
-                    child: Container(width: 100, height: 100, color: Colors.red),
+                    child: Container(
+                      padding: const EdgeInsets.all(5.0),
+                      color: Colors.redAccent,
+                      child: ClipPath(
+                        clipper: StarClipper(),
+                        child: Container(
+                          width: 200,
+                          height: 200,
+                          color: Colors.amber,
+                          child: const Center(
+                            child: Text("⭐", style: TextStyle(fontSize: 40)),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                  const SizedBox(width: 20.0,),
-                  ValueListenableBuilder<int>(
-                    valueListenable: _remainingS,
-                    builder: (context, s, _) {
-                      return Text("$s s", style: const TextStyle(fontSize: 24));
-                    },
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Expanded(
+                    child: ValueListenableBuilder<int>(
+                      valueListenable: _remainingS,
+                      builder: (context, s, _) {
+                        return Text("The result will show in $s s",
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w700));
+                      },
+                    ),
                   ),
                 ],
               ),

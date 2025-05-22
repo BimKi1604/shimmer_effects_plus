@@ -8,6 +8,7 @@ import '../../data/shimmer_data.dart';
 /// The main class for shimmer effect
 class ShimmerEffectWidget extends StatefulWidget {
   final Widget child;
+
   /// sub color in gradients
   final Color subColor;
 

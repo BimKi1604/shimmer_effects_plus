@@ -26,6 +26,7 @@ shimmer_effects_plus is a Flutter package that creates a shimmering loading effe
 
 ## ✨ Features
 
+- Show shimmer effect on any widget then hide it when the function is finished
 - 🔄 Repeating shimmer animation
 - 🎨 Custom colors (mainColor, subColor)
 - ⏱ Custom animation duration (period)
@@ -72,6 +73,35 @@ shimmer_effects_plus is a Flutter package that creates a shimmering loading effe
 ## 🚀 Usage
 
 ### ✅ Basic Usage
+
+#### ⭐ Shimmer auto hide shimmer effect and loading child when function finish
+
+```dart
+ShimmerEffectWidget.auto(
+    subColor: Colors.grey[300]!,
+    mainColor: Colors.grey[100]!,
+    period: const Duration(milliseconds: 1200),
+        funcShimmer: () async {
+        await Future.delayed(Duration(seconds: 3)); /// remember await function action (load api, read file, ... )
+    },
+    direction: ShimmerDirection.ttb,
+    child: Container(
+        padding: const EdgeInsets.all(5.0),
+        color: Colors.redAccent,
+        child: ClipPath(
+            clipper: StarClipper(),
+            child: Container(
+                width: 200, 
+                height: 200,
+                color: Colors.amber,
+                child: const Center(
+                child: Text("⭐", style: TextStyle(fontSize: 40)),
+                ),
+            ),
+        ),
+    ),
+)
+```
 
 #### 📏 Basic Shimmer cover
 
@@ -141,7 +171,7 @@ To install the `shimmer_effects_plus` package, add the following to your `pubspe
 
 ```yaml
 dependencies:
-  expandable_tile: ^1.0.1
+  expandable_tile: ^1.0.2
 ```
 ## 📦 Supported SDKs
 
